@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<%= %>
+<p>
+  <strong>Title:</strong>
+  <%= @product.title %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @product.price %>
+</p>
+
+<%= link_to 'Back', products_path, class:'btn btn-default' %>
+<hr />
+
+<!-- 以下為用 Braintree 串接 paypal 的客戶端設定範例： Braintree > Set Up Your Client > JS V2 SDK -->
+<!-- <form id="checkout" method="post" action="/checkout">
+  <div id="payment-form"></div>
+  <input type="submit" value="Pay $10">
+</form> -->
+<%= form_for(@product, url: checkout_product_path(@product), method: :post) do |f| %>
+  <div id="payment-form"></div>
+  <%= f.submit "確認付款", class:"btn btn-default btn-danger" %>
+  <% end %>
+
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+<script>
+// We generated a client token for you so you can test out this code
+// immediately. In a production-ready integration, you will need to
+// generate a client token on your server (see section below).
+var clientToken = "<%= @client_token %>";
+
+braintree.setup(clientToken, "dropin", {
+  container: "payment-form"
+});
+</script>

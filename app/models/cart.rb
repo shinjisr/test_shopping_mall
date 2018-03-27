@@ -22,8 +22,8 @@ class Cart
 
   # 嘗試新增移除購物車內物品的功能
   def remove_item(params_product_id)
-    # 從 Items 陣列移除指定的 CartItem - 180322
-    items.delete_if {|item| item['product_id'] == params_product_id}
+    # 從 Items 陣列移除指定的 CartItem 物件- 180327
+    items.delete_if {|item| item.product_id == params_product_id}
   end
 
   def empty?
@@ -35,7 +35,7 @@ class Cart
   end
 
   # 因為要使用 session 存購物車的資料，所以要把購物車物件轉換成 hash 格式
-  session_hash = { "items" => [{"product_1" => 1, "quantity" => 1}, {"product_2" => 2, "quantity" => 2}]}
+  # session_hash = { "items" => [{"product_1" => 1, "quantity" => 1}, {"product_2" => 2, "quantity" => 2}]}
 
   def serialize
     all_items = items.map { |item|

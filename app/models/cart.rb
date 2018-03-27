@@ -23,7 +23,7 @@ class Cart
   # 嘗試新增移除購物車內物品的功能
   def remove_item(params_product_id)
     # 從 Items 陣列移除指定的 CartItem - 180322
-    items.delete_if {|item| item['product_id'] == params_product_id}
+    items.delete_if {|item| item.product_id == params_product_id}
   end
 
   def empty?

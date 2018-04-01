@@ -6,7 +6,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.0.1'
-gem 'sqlite3'
+# move sqlite3 into :development, :test group
+# gem 'sqlite3'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -30,7 +31,7 @@ gem 'simple_form'
 
 # aasm 狀態機，令購物流程按順序進行
 gem 'aasm'
-# Braintree 後端，串接 paypal 金流服務
+# Braintree 後端，用來串接 paypal 金流服務
 # https://developers.braintreepayments.com/start/hello-server/ruby
 gem 'braintree',  "~> 2.82.0"
 
@@ -39,6 +40,12 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'sqlite3'
+end
+
+# 加入 PostgreSQL 資料庫用的套件 pg 方可將專案部署在 Heroku 上
+group :production do
+  gem 'pg'
 end
 
 group :development do
@@ -47,11 +54,6 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-end
-
-# 加入 PostgreSQL 資料庫用的套件 pg 方可將專案部署在 Heroku 上
-group :production do
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

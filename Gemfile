@@ -42,6 +42,7 @@ group :development, :test do
 end
 
 group :development do
+  # 可以在網頁放一個 console 視窗，因為有資安問題，必須在開發模式下小心使用
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
   gem 'spring'

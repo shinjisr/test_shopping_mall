@@ -45,7 +45,9 @@ end
 
 # 加入 PostgreSQL 資料庫用的套件 pg 方可將專案部署在 Heroku 上
 group :production do
-  gem 'pg'
+  # try to fix deploy problem of Heroku
+  # https://stackoverflow.com/questions/31759711/postgresql-gem-is-not-loaded-error-deploying-a-ruby-on-rails-application-on-he
+  gem 'pg', '~> 0.20'
 end
 
 group :development do

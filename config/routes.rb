@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/", to: redirect('/products')
   resources :products do
     member do
       post :checkout
